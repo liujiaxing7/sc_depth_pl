@@ -111,7 +111,7 @@ class DepthDecoder(nn.Module):
                 idx = self.i_to_scaleIdx_conversion[i]
                 disp = self.alpha * \
                     self.sigmoid(self.dispconvs[idx](x)) + self.beta
-                depth = 1.0 / disp
+                depth = torch.div(1, disp)
                 self.outputs.append(depth)
 
         self.outputs = self.outputs[::-1]
